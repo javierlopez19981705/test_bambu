@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "547831389528",
+    "firebase_url": "https://test-bambu-default-rtdb.firebaseio.com",
+    "project_id": "test-bambu",
+    "storage_bucket": "test-bambu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547831389528:android:27c04a896ace3e59e1592d",
+        "android_client_info": {
+          "package_name": "com.example.test_bambu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547831389528-pnco2j1ieqou24n72kkgv104fihl2v0t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.test_bambu",
+            "certificate_hash": "e333e32f665379efe7e3c5368ab3278318eafdf0"
+          }
+        },
+        {
+          "client_id": "547831389528-lvnekc29sv9b9okevcmbjsi5fbek5s1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkH2MeJIgBkqTZp8HP7Ulthk6zRDN9gK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547831389528-hfom7ggbmbc4dubtkfgslqtpo48shqr2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "547831389528-bvmv0s3un777tequvhrr6gsujqt4gujp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.testBambu"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
