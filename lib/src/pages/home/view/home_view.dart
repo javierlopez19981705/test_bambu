@@ -6,6 +6,7 @@ import 'package:sliver_tools/sliver_tools.dart';
 import 'package:test_bambu/src/pages/home/cubit/home_cubit.dart';
 import 'package:test_bambu/src/pages/home/cubit/home_state.dart';
 import 'package:test_bambu/src/pages/home/view/widgets/category_list.dart';
+import 'package:test_bambu/src/pages/search/view/custom_search_delegate.dart';
 import 'package:test_bambu/src/utils/fonts_styles.dart';
 import 'package:test_bambu/src/widgets/card_new.dart';
 import 'package:test_bambu/src/widgets/swiper_news.dart';
@@ -35,6 +36,14 @@ class HomeView extends StatelessWidget {
             },
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearchDelegate());
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
       ),
       body: const BodyHomeView(),
     );
