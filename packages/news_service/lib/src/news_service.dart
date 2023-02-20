@@ -10,7 +10,7 @@ class NewsService {
 
   final http.Client _httpClient;
   final String _baseUrl = 'newsapi.org';
-  final _apiKey = '58ffed0701a54ab5b748fd356a48ab0b';
+  final _apiKey = 'e4ad4b1ba1494e5893730e83c707aa52';
 
   ///
   Future<List<Map<String, dynamic>>> fetchEverything({
