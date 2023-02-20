@@ -17,7 +17,7 @@ Paquetes utilizados:
   - sliver_tools: ^0.2.9
   
 Link apk:
- https://drive.google.com/file/d/1g4igH9J_OAhnwea66Mdv_g3S4zx62phP/view?usp=share_link
+ https://drive.google.com/file/d/13rjDmWDA35InWSYDdkO6W9DW-UidrwzU/view?usp=share_link
 
 Capturas:
 
