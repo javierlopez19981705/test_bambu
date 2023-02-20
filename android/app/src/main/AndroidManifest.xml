@@ -17,6 +17,7 @@
             <data android:scheme="https" />
         </intent>
     </queries>
+    <uses-permission android:name="android.permission.INTERNET"/> <!-- Add this -->
 
    <application
         android:label="test_bambu"

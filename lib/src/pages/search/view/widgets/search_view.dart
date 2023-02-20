@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_repository/news_repository.dart';
 import 'package:test_bambu/src/pages/search/cubit/search_cubit.dart';
 import 'package:test_bambu/src/pages/search/view/widgets/list_search.dart';
-import 'package:test_bambu/src/widgets/card_new.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({required this.query, super.key});

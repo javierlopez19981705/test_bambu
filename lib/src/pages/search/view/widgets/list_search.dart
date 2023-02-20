@@ -27,6 +27,7 @@ class ListSearch extends StatelessWidget {
     });
 
     return ListView.builder(
+      physics: const BouncingScrollPhysics(),
       controller: controller,
       itemBuilder: (context, index) {
         if (loadingMore) {

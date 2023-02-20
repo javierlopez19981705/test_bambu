@@ -16,9 +16,22 @@ class AppView extends StatelessWidget {
           builder: (context, state) {
             switch (state.status) {
               case AuthStatus.authenticated:
-                return HomeView();
+                return const HomeView();
               case AuthStatus.unauthenticated:
                 return const LoginView();
+
+              case AuthStatus.loading:
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              case AuthStatus.errorLogin:
+                return LoginView(
+                  messageError: state.error,
+                );
+              case AuthStatus.isLogin:
+                return const LoginView(
+                  isLogin: true,
+                );
             }
           },
         ),

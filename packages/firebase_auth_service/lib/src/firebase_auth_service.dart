@@ -30,16 +30,31 @@ class FirebaseAuthService {
     });
   }
 
-  Future<void> signUp({required String email, required String password}) async {
+  Future<String?> signUp(
+      {required String email,
+      required String password,
+      required String name}) async {
     try {
       await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-    } catch (_) {}
+      await createUserDatabase(
+        user: UserModel(
+          uid: _auth.currentUser!.uid,
+          name: name,
+          email: _auth.currentUser!.email,
+        ),
+      );
+      logOut();
+      return null;
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      return e.message;
+    }
   }
 
-  Future<void> loginWithEmailAndPassword({
+  Future<String?> loginWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -48,7 +63,10 @@ class FirebaseAuthService {
         email: email,
         password: password,
       );
-    } catch (_) {}
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 
   Future<void> logOut() async {
@@ -84,6 +102,7 @@ class FirebaseAuthService {
     if (snapshot.exists) {
       snapshot.value;
       print('EXISTE');
+      // snapshot.valu
       return UserModel.fromJson(snapshot.value as Map<Object?, dynamic>);
     } else {
       print('NO EXISTE');
@@ -94,7 +113,14 @@ class FirebaseAuthService {
   Future<UserModel> createUserDatabase({required UserModel user}) async {
     final time = DateTime.now().millisecondsSinceEpoch;
     final ref = _database.ref('users/${user.uid}');
-    return ref.set({...user.toJson(), "date": time}).then((value) {
+
+    final data = <String, dynamic>{"date": time, "uid": user.uid};
+
+    user.email != null ? data.addAll({"email": user.email}) : {};
+    user.name != null ? data.addAll({"name": user.name}) : {};
+    user.photo != null ? data.addAll({"photo": user.photo}) : {};
+
+    return ref.update(data).then((value) {
       return user.copyWith(
         date: DateTime.fromMillisecondsSinceEpoch(time),
       );

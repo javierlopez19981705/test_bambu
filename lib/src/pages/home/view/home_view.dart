@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_repository/news_repository.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -14,28 +13,12 @@ import 'package:test_bambu/src/widgets/swiper_news.dart';
 import '../../login/cubit/auth_cubit.dart';
 
 class HomeView extends StatelessWidget {
-  HomeView({super.key});
-  final _advancedDrawerController = AdvancedDrawerController();
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: _handleMenuButtonPressed,
-          icon: ValueListenableBuilder<AdvancedDrawerValue>(
-            valueListenable: _advancedDrawerController,
-            builder: (_, value, __) {
-              return AnimatedSwitcher(
-                duration: const Duration(milliseconds: 100),
-                child: Icon(
-                  value.visible ? Icons.clear : Icons.menu,
-                  key: ValueKey<bool>(value.visible),
-                ),
-              );
-            },
-          ),
-        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -45,12 +28,12 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
+      drawer: Drawer(
+        backgroundColor: Colors.grey[900],
+        child: const MenuDrawer(),
+      ),
       body: const BodyHomeView(),
     );
-  }
-
-  void _handleMenuButtonPressed() {
-    _advancedDrawerController.showDrawer();
   }
 }
 
@@ -83,16 +66,22 @@ class MenuDrawer extends StatelessWidget {
               ),
             ),
             Text(
-              state.user.uid,
-              style: const TextStyle(color: Colors.white),
+              state.user.name ?? '',
+              style: headingStyleBold.copyWith(color: Colors.white),
             ),
             Text(
-              state.user.name ?? '',
-              style: const TextStyle(color: Colors.white),
+              state.user.uid,
+              style: captionStyle.copyWith(color: Colors.white),
             ),
+            const SizedBox(height: 8),
             Text(
               state.user.email ?? '',
-              style: const TextStyle(color: Colors.white),
+              style: bodyStyle.copyWith(color: Colors.white),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Usuario desde:',
+              style: bodyStyle.copyWith(color: Colors.white),
             ),
             Text(
               state.user.date.toString(),
@@ -103,8 +92,14 @@ class MenuDrawer extends StatelessWidget {
               onTap: () {
                 context.read<AuthCubit>().logout();
               },
-              leading: const Icon(Icons.logout),
-              title: const Text('Cerrar sesion'),
+              leading: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
+              title: const Text(
+                'Cerrar sesion',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         );

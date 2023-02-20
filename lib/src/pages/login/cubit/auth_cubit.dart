@@ -7,12 +7,10 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final FirebaseAuthService authService;
 
-  AuthCubit({required this.authService})
-      : super(
-          authService.currentUser.isNotEmpty
-              ? AuthState.authenticated(authService.currentUser)
-              : const AuthState.unauthenticated(),
-        ) {
+  String email = '';
+  String pass = '';
+
+  AuthCubit({required this.authService}) : super(const AuthState.init()) {
     authService.user.listen((user) {
       _onUserChanged(user);
     });
@@ -24,12 +22,22 @@ class AuthCubit extends Cubit<AuthState> {
         : AuthState.authenticated(user));
   }
 
-  register({required String email, required String password}) {
-    authService.signUp(email: email, password: password);
+  saveEmail({required String value}) {
+    email = value;
   }
 
-  login({required String email, required String password}) {
-    authService.loginWithEmailAndPassword(email: email, password: password);
+  savePassword({required String value}) {
+    pass = value;
+  }
+
+  login() async {
+    emit(const AuthState.login());
+
+    final resp = await authService.loginWithEmailAndPassword(
+        email: email, password: pass);
+    if (resp != null) {
+      emit(AuthState.errorLogin(resp));
+    }
   }
 
   loginWithGoogle() {

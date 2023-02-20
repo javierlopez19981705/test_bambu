@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_repository/news_repository.dart';
 import 'package:test_bambu/src/pages/app/view/app_view.dart';
 import 'package:test_bambu/src/pages/login/cubit/auth_cubit.dart';
+import 'package:test_bambu/src/pages/register/view/register_view.dart';
 import 'package:test_bambu/src/utils/custom_colors.dart';
 import 'firebase_options.dart';
 
@@ -64,6 +65,7 @@ class MainApp extends StatelessWidget {
           ),
           routes: {
             'app': (context) => const AppView(),
+            'register': (context) => const RegisterView(),
           },
           initialRoute: 'app',
         ),

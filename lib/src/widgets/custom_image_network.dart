@@ -21,15 +21,17 @@ class CustomImageNetwork extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.network(
       urlImage ?? errorImage,
-      // loadingBuilder: (context, child, loadingProgress) =>
-      //     loadingProgress != null
-      //         ? child
-      //         : Image.asset(
-      //             'assets/images/loading.gif',
-      //           ),
       loadingBuilder: (BuildContext context, Widget child,
           ImageChunkEvent? loadingProgress) {
         if (loadingProgress == null) return child;
+        return Image.asset(
+          'assets/images/loading.gif',
+          fit: boxFit,
+          width: width,
+          height: height,
+        );
+      },
+      errorBuilder: (context, exception, stackTrace) {
         return Image.asset(
           'assets/images/loading.gif',
           fit: boxFit,
